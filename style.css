@@ -1,0 +1,310 @@
+:root {
+    --primary: #6366f1;
+    --secondary: #a855f7;
+    --dark: #0f172a;
+    --light: #f8fafc;
+    --primary-rgb: 99, 102, 241;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg, var(--dark) 0%, #1e293b 100%);
+    color: var(--light);
+    min-height: 100vh;
+}
+
+.glass-panel {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(12px);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 2rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 1.5rem 5%;
+    background: rgba(0, 0, 0, 0.3);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* Subtle shadow */
+}
+
+.brand {
+    font-size: 2rem;
+    /* Slightly larger */
+    font-weight: 700;
+    background: linear-gradient(to right, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    /* Vertically center links */
+}
+
+.nav-item {
+    color: var(--light);
+    text-decoration: none;
+    margin-left: 1.5rem;
+    /* Increased spacing */
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+}
+
+.nav-item:hover {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.main-container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 2rem;
+}
+
+.generator-section {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.prompt-box {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+.prompt-input {
+    width: 100%;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    color: white;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+}
+
+.generate-btn {
+    background: linear-gradient(45deg, var(--primary), var(--secondary));
+    color: white;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.generate-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.settings-panel {
+    display: grid;
+    gap: 1rem;
+}
+
+.option-group {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 1.5rem;
+    border-radius: 12px;
+}
+
+.option-group h3 {
+    margin-bottom: 0.75rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.model-select {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    color: var(--light);
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    appearance: none;
+    /* Remove default arrow */
+    -webkit-appearance: none;
+    cursor: pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23fff'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.75rem top 50%;
+    background-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.model-select:hover {
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.model-select:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 2px rgba(var(--primary-rgb), 0.2);
+    /* Assuming you want to define --primary-rgb */
+}
+
+/* Optional: Style the options within the select (some browsers may limit styling) */
+.model-select option {
+    background-color: #1e293b;
+    /* Match the darker background */
+    color: var(--light);
+}
+
+.gallery-section {
+    margin-top: 3rem;
+}
+
+#generated-images {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.gallery-item {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.resolution-inputs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    /* Two columns for label and input */
+    gap: 0.5rem;
+    /* Space between label and input */
+    margin-bottom: 1rem;
+}
+
+.resolution-inputs label {
+    font-size: 1rem;
+    font-weight: 500;
+    display: block;
+    /* Ensure label takes full width */
+    margin-bottom: 0.25rem;
+    /* Space between label and input */
+}
+
+.resolution-inputs input[type="number"] {
+    width: 100%;
+    padding: 0.75rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: white;
+    font-size: 1rem;
+}
+
+.preview-placeholder {
+    width: 100%;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px dashed rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    color: rgba(255, 255, 255, 0.5);
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+    /* Required for absolute positioning of skeleton */
+}
+
+.preview-placeholder img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    /* Or cover, depending on desired behavior */
+}
+
+.resolution-badge {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .generator-section {
+        grid-template-columns: 1fr;
+    }
+
+    .side-panel {
+        order: -1;
+        /* Move side panel above main panel on small screens */
+    }
+
+    .resolution-inputs {
+        grid-template-columns: 1fr;
+    }
+
+    .resolution-inputs input[type="number"] {
+        width: 100%;
+    }
+}
+
+.generate-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Skeleton Loader Styles */
+.skeleton-loader {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.05) 25%, rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0.05) 75%);
+    background-size: 200% 100%;
+    animation: skeleton-loading 1.5s linear infinite;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1.2rem;
+}
+
+@keyframes skeleton-loading {
+    0% {
+        background-position: 200% 0;
+    }
+
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+/* Hide placeholder content when image is loading */
+.preview-placeholder.loading #placeholder-text {
+    display: none;
+}
+.footer {
+    text-align: center;
+    padding: 1rem 0;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.6);
+  }
